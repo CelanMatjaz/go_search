@@ -1,0 +1,40 @@
+services:
+  database:
+    image: postgres
+    container_name: db.local    
+    env_file:
+    - path: ./database/dev.env
+      required: true
+    hostname: db
+    ports: 
+      - 5432:5432
+
+  backend:
+    container_name: backend.local
+    hostname: backend
+    ports: 
+      - 8080:8080
+    depends_on:
+      - database
+    build:
+      context: backend
+      dockerfile: dev.Dockerfile
+    env_file:
+    - path: backend/dev.env
+      required: true
+    volumes:
+      - ./backend:/backend
+
+  # frontend:
+  #   container_name: frontend.local
+  #   hostname: app
+  #   ports: 
+  #     - 3000:3000
+  #   build:
+  #     context: app
+  #     dockerfile: dev.Dockerfile
+  #   env_file:
+  #   - path: app/dev.env
+  #     required: true
+  #   volumes:
+  #     - ./app:/app

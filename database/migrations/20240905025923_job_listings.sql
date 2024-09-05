@@ -1,6 +1,6 @@
 -- +goose Up
 -- +goose StatementBegin
-CREATE TABLE IF NOT EXISTS job_listing (
+CREATE TABLE IF NOT EXISTS job_listings (
     id SERIAL PRIMARY KEY,
     url VARCHAR(512) NOT NULL,
     company VARCHAR(64) NOT NULL
@@ -9,5 +9,5 @@ CREATE TABLE IF NOT EXISTS job_listing (
 
 -- +goose Down
 -- +goose StatementBegin
-DROP TABLE IF EXISTS job_listing;
+DROP TABLE IF EXISTS job_listings;
 -- +goose StatementEnd

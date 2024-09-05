@@ -14,7 +14,7 @@ import (
 
 func main() {
 	if len(os.Args) < 2 {
-		log.Fatal("Provide a subcommand, either of 'up' or 'down'")
+		log.Fatal("Provide a subcommand, either of 'up', 'down' or 'reset'")
 	}
 
 	godotenv.Load("dev.env")
@@ -40,8 +40,13 @@ func main() {
 			panic(err)
 		}
 
+	case "reset":
+		if err := goose.Reset(db, "./migrations"); err != nil {
+			panic(err)
+		}
+
 	default:
-		log.Fatal("Only subcommands 'up' and 'down' supported")
+		log.Fatal("Only subcommands 'up', 'down' and 'reset' supported")
 	}
 
 }

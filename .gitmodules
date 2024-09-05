@@ -1,0 +1,3 @@
+[submodule "backend"]
+	path = backend
+	url = git@github.com:CelanMatjaz/job_application_tracker_api.git

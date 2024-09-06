@@ -18,7 +18,7 @@ func main() {
 	}
 
 	godotenv.Load("dev.env")
-	connectionString := os.Getenv("CONNECTION_STRING")
+	connectionString := os.Getenv("POSTGRES_URL")
 
 	db, err := sql.Open("postgres", connectionString)
 	if err != nil {

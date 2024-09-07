@@ -25,16 +25,16 @@ services:
     volumes:
       - ./backend:/backend
 
-  # frontend:
-  #   container_name: frontend.local
-  #   hostname: app
-  #   ports: 
-  #     - 3000:3000
-  #   build:
-  #     context: app
-  #     dockerfile: dev.Dockerfile
-  #   env_file:
-  #   - path: app/dev.env
-  #     required: true
-  #   volumes:
-  #     - ./app:/app
+  frontend:
+    container_name: frontend.local
+    hostname: frontend
+    ports: 
+      - 3000:3000
+    build:
+      context: frontend
+      dockerfile: dev.Dockerfile
+    env_file:
+    - path: frontend/dev.env
+      required: true
+    volumes:
+      - ./frontend:/frontend

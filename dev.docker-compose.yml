@@ -36,5 +36,16 @@ services:
     env_file:
     - path: frontend/dev.env
       required: true
-    volumes:
-      - ./frontend:/frontend
+    # volumes:
+    #   - ./frontend/src:/frontend/src
+    #   - ./frontend/tailwind.config.js:/frontend/tailwind.config.js
+    develop:
+      watch:
+        - action: sync
+          path: ./frontend/src
+          target: /frontend/src
+          ignore: 
+            - ./node_modules
+        - action: rebuild
+          path: ./package.json
+

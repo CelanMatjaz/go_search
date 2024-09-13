@@ -19,6 +19,9 @@ func main() {
 	connectionString := os.Getenv("POSTGRES_URL")
 
 	cmd := exec.Command("goose", "-dir", "migrations", "postgres", connectionString, "create", os.Args[1], "sql")
-	output, _ := cmd.CombinedOutput()
+	output, err := cmd.CombinedOutput()
+	if err != nil {
+		log.Fatal(err.Error())
+	}
 	print(string(output))
 }

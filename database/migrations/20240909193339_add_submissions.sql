@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS job_applications (
     updated_at TIMESTAMP NOT NULL DEFAULT (now() at time zone 'utc'),
 
     CONSTRAINT job_application_has_user
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS job_application_text (
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS job_application_text (
     updated_at TIMESTAMP NOT NULL DEFAULT (now() at time zone 'utc'),
 
     CONSTRAINT job_application_text_has_user
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS job_application_sections (
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS job_application_sections (
     updated_at TIMESTAMP NOT NULL DEFAULT (now() at time zone 'utc'),
 
     CONSTRAINT job_application_text_has_user
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS mtm_application_text_sections(
@@ -41,10 +41,10 @@ CREATE TABLE IF NOT EXISTS mtm_application_text_sections(
     sub_sect_id INT NOT NULL,
 
     CONSTRAINT mtm_application_text_sections_has_user
-    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
 
     CONSTRAINT mtm_application_text_sections_has_text
-    FOREIGN KEY (sub_text_id) REFERENCES job_application_text(id),
+    FOREIGN KEY (sub_text_id) REFERENCES job_application_text(id) ON DELETE CASCADE,
 
     CONSTRAINT mtm_application_text_sections_has_sects
     FOREIGN KEY (sub_sect_id) REFERENCES job_application_sections(id)

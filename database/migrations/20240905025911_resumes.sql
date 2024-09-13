@@ -7,11 +7,11 @@ CREATE TABLE IF NOT EXISTS resumes (
     note BPCHAR NOT NULL DEFAULT '',
 
     CONSTRAINT job_application_text_has_user
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 -- +goose StatementEnd
 
 -- +goose Down
 -- +goose StatementBegin
-DROP TABLE IF EXISTS resumes;
+DROP TABLE IF EXISTS resumes CASCADE;
 -- +goose StatementEnd
